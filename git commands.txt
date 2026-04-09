@@ -1,0 +1,138 @@
+## Github installation ##
+
+Great Youtube Tuto here: https://www.youtube.com/watch?v=USjZcfj8yxE&t=814s
+Notes here: https://www.notion.so/Introduction-to-Git-ac396a0697704709a12b6a0e545db049
+Liste de commandes: https://dev.to/doabledanny/git-cheat-sheet-50-commands-free-pdf-and-poster-4gcn
+
+
+### --- REPOSITORIES --- ###
+A repository is a container for a project that is tracked by backed.
+You have local repositories on your computer.
+You have remote repositories, like Github.com
+
+
+#### --- KEY COMMANDS --- ####
+
+### Connaitre la version de Github
+git --version
+
+### Faire d'un dossier existant un repository (track changes via git)
+(cela créé differents fichiers cachés qui vont tracker les chgts, dont un .git folder)
+git init
+
+## Savoir si des chgts ont été faits sur le repo mais n'ont pas été commit sur la branche
+git status
+
+#### ----- HOW TO COMMIT ? TWO STEP PROCESS ---- ####
+1/ Add to staging file
+git add filename1.py filename2.py 
+or to add all:
+git add .
+
+2/ Commit
+git commit -m "Message string"
+
+## Récupérer l'historique des commits (avec leur id pour faire des gco)
+git log
+
+### Go back to a past version of our code on master/develop local branch
+git check out <commit_id>
+
+## Changer de branche
+git checkout <branchname>
+
+## --- BRANCHES ----- ##
+Branch that is used when others view your code on Github.com
+Branch to which the commits are done
+Documentation : https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches
+
+### Création d'une nouvelle branche ###
+git branch <branch_name>
+
+### Liste des branches en local ##
+git branch
+
+### Liste des branches en remote ##
+git branch -r
+
+### Liste des toutes les branches
+git branch -a
+
+## Merger du code sur master (se mettre sur master)##
+git merge <branchname>
+
+=> tous ces changements sont fait en local, en utilisant GIT -- ET NON GITHUB.
+
+### ----- POUSSER DU CODE SUR GIT HUB ----- ##
+
+--> Ne pas pousser du code sur un répo créé directement
+Cloner son repo local vers le remote github
+A LIRE : https://stackoverflow.com/questions/23344320/there-isnt-anything-to-compare-nothing-to-compare-branches-are-entirely-diffe
+=> Comprendre pourquoi ca a marché !
+
+Pour ajouter du code sur staging 
+git remote add origin <github.url>
+==> seulement quand on crée un repo !
+
+Pousser le code sur main 
+git push -u -f origin main // puis entrer login mdp si pas pré enregistré dans les paramètres de Mac.
+
+### --- DELETE --- ###
+Delete local git branch
+
+##### --- CHANGE REMOTE ORIGIN  --- #### 
+pour savoir a quelle adresse on pousse le code actuellement
+git remote -v 
+
+Pour changer cette adresse: 
+git remote set-url origin https://github.com/hmalorey/backtes
+t/trix.git
+
+
+###### ---- INITIALISATION ---- ######
+
+## Changer le nom de la branche par défaut ##
+git config --global init.defaultBranch <nom>
+
+Generate Personal Access Token
+https://stackoverflow.com/questions/68775869/message-support-for-password-authentication-was-removed-please-use-a-personal
+Add it to mac OS key chain
+https://docs.github.com/en/enterprise-server@3.4/get-started/getting-started-with-git/updating-credentials-from-the-macos-keychain
+
+
+#### ++++ GITHUB TERMINOLOGY +++ #####
+
+upstream <= The remote git repo (likely whose master or release branch is in production)
+
+forked-repo <= The remote [experimental git repo] (https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) also known as "origin".
+
+local repo <= The files and directories that you work with on your local workstaion, which you likely got by running a git clone my-forked-repo.git command
+
+local index <= Also known as your local git "stage", i.e., where you stage your files before pushing them to you remote repo.
+
+Source: https://stackoverflow.com/questions/23344320/there-isnt-anything-to-compare-nothing-to-compare-branches-are-entirely-diffe
+
+
+### -- Comment UPLOADER des fichiers de code pour la première fois sur Github ? --- ####
+1/ Créer le repo sur Github
+2/ En local, aller dans dans le dossier à uploader et faire git init
+3/ En local, ajouter les files sur staging local en faisant git add .
+Option: être sur qu'on est sur master en faisant : git branch -M main
+4/ En local, commit les files sur la branche locale main en faisant git commit -m "commit message"
+5/ Ensuite, paramétrer l'URL remote (appelée origin) a laquelle on veut pousser le code ensuite en faisant: 
+git remote add origin https://github.com/hmalorey/a_key_commands.git
+6/ Pousser le code sur Github main en faisant : 
+git push -u origin main
+
+
+### -- Comment mettre à jour le code d'un repo deja existant sur Github ? --- ####
+1/ En local, ajouter les files sur staging local en faisant git add .
+2/ En local, commit les files sur la branche locale main en faisant git commit -m "commit message"
+3/ Checker quelle adresse remote est paramétrer en faisant
+git remote -v
+Si ce n'est pas la bonne (celle du repo cible sur Github), la mettre a jour en faisant:
+git remote set-url origin https://github.com/hmalorey/backtest/trix.git
+4/ Pousser le code sur main en faisant: -
+git push -u -f origin main
+
+

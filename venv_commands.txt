@@ -1,0 +1,53 @@
+## Key commands ##
+
+##— see the list of python versions you can install ## 
+pyenv install -l
+
+## Installer une certaine version de Python ex: version 10##
+pyenv install 3.10.0
+
+## See the Python versions installed on machine ##
+pyenv versions
+
+## Set Python version as default for all Python files ##
+pyenv global 3.10.0
+
+## Set Python version for a specific folder ##
+pyenv local 3.9.6
+
+## See which python version you are using ##
+python -V
+
+## Create a virtual environment for a project (folder) (inside project directory). This create a .venv directory in the folder holding all the modules installed from pip ##
+python -m venv .venv
+
+
+## Activate virtual environment ## 
+source .venv/bin/activate
+
+## Vérifier quelp y dans le venv
+.venv/bin/python --version
+
+
+## FULL COMMAND
+pyenv local 3.10.20
+python -m venv .venv
+source .venv/bin/activate
+python --version
+
+
+
+## See that we locally have python interpreter and pip
+ls .venv/bin
+
+## Verify that we use the right python ##
+which python
+
+## Tell VS code to activate the virtual environment when coding ##
+Create a settings JSON file
+DO CMD + SHIFT + P to open the command tab
+Then open settings json for this workspace.
+"python.terminal.activateEnvironment": true
+
+## Run python script from terminal
+python filename.py
